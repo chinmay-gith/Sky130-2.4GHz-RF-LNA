@@ -34,6 +34,15 @@ The design uses a common-source CMOS RF amplifier with:
 - Resistive gate bias
 - 1.8 V supply
 
+## LNA Schematic
+
+![SKY130 LNA Schematic](results/lna_schematic.png)
+
+The final schematic implements a common-source NMOS RF amplifier with
+inductive source degeneration, inductive gate matching, output loading,
+resistive gate bias, and a 1.8 V supply.
+
+
 ### Final Input Network
 
 | Component | Value |
