@@ -65,19 +65,14 @@ resistive gate bias, and a 1.8 V supply.
 | Simulator | ngspice-42 |
 | AC sweep | 100 MHz – 10 GHz |
 
-## Final Schematic
-
-The final transistor-level LNA schematic is implemented in Xschem.
-
-![SKY130 LNA Schematic](results/lna_schematic.png)
 
 ## Simulation Results
 
 | Metric | Result |
 |---|---:|
-| Maximum gain | 26.90 dB |
+| Maximum voltage gain | 26.90 dB |
 | Peak gain frequency | 2.291 GHz |
-| Gain @ 2.4 GHz | 24.61 dB |
+| Voltage gain @ 2.4 GHz | 24.61 dB |
 | S11 @ 2.4 GHz | -4.59 dB |
 | Zin @ ~2.4 GHz | 197.24 - j5.05 Ω |
 
@@ -88,10 +83,10 @@ around the intended 2.4 GHz operating region.
 
 ![LNA Gain Response](results/lna_gain_response.png)
 
-The simulated amplifier reaches a maximum gain of approximately 26.9 dB
+The simulated amplifier reaches a maximum voltage gain of approximately 26.9 dB
 at 2.291 GHz.
 
-At the target frequency of 2.4 GHz, the simulated gain is approximately
+At the target frequency of 2.4 GHz, the simulated voltage gain is approximately
 24.6 dB.
 
 ## Input Return Loss
