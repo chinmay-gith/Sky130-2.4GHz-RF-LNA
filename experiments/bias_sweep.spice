@@ -1,0 +1,92 @@
+** sch_path: /home/azmuth/Projects/Sky130_RF_Receiver/lna/lna_sky130_match_test.sch
+**.subckt lna_sky130_match_test RF_OUT
+*.opin RF_OUT
+XM1 RF_OUT net2 net1 GND sky130_fd_pr__nfet_01v8 L=0.15 W=40 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+Lload VDD RF_OUT 3n m=1
+Cload VDD RF_OUT 1.5p m=1
+Ls net1 GND 0.5n m=1
+Lg net2 net4 2n m=1
+Rs net3 net5 50 m=1
+V1 net5 GND dc 0 ac 1
+Rbias VBIAS net2 10k m=1
+Rload RF_OUT GND 50 m=1
+VB VBIAS GND 0.9
+VDD1 VDD GND 1.8
+C1 net3 net4 1p m=1
+**** begin user architecture code
+
+
+* --- Sky130 LNA testbench directives ---
+* Adjust this include path to match your local sky130 install:
+.lib /home/azmuth/.volare/volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/combined/sky130.lib.spice tt
+.control
+
+alter Rload 50
+alter Lg 2n
+alter C1 1p
+alter Lload 3n
+alter Cload 1.4p
+
+alter VB 0.5
+ac lin 1 2.4g 2.4g
+let z05 = 1/(-i(V1))
+let s05 = (z05-50)/(z05+50)
+let s05db = 20*log10(abs(s05))
+print z05
+print s05db
+
+alter VB 0.6
+ac lin 1 2.4g 2.4g
+let z06 = 1/(-i(V1))
+let s06 = (z06-50)/(z06+50)
+let s06db = 20*log10(abs(s06))
+print z06
+print s06db
+
+alter VB 0.7
+ac lin 1 2.4g 2.4g
+let z07 = 1/(-i(V1))
+let s07 = (z07-50)/(z07+50)
+let s07db = 20*log10(abs(s07))
+print z07
+print s07db
+
+alter VB 0.8
+ac lin 1 2.4g 2.4g
+let z08 = 1/(-i(V1))
+let s08 = (z08-50)/(z08+50)
+let s08db = 20*log10(abs(s08))
+print z08
+print s08db
+
+alter VB 0.9
+ac lin 1 2.4g 2.4g
+let z09 = 1/(-i(V1))
+let s09 = (z09-50)/(z09+50)
+let s09db = 20*log10(abs(s09))
+print z09
+print s09db
+
+alter VB 1.0
+ac lin 1 2.4g 2.4g
+let z10 = 1/(-i(V1))
+let s10 = (z10-50)/(z10+50)
+let s10db = 20*log10(abs(s10))
+print z10
+print s10db
+
+alter VB 1.1
+ac lin 1 2.4g 2.4g
+let z11 = 1/(-i(V1))
+let s11 = (z11-50)/(z11+50)
+let s11db = 20*log10(abs(s11))
+print z11
+print s11db
+
+.endc
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

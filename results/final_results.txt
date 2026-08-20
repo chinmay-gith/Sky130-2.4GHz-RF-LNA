@@ -1,0 +1,41 @@
+Sky130 RF LNA — Simulation Results
+===================================
+
+Technology:
+SkyWater SKY130
+
+Target Frequency:
+2.4 GHz
+
+Supply Voltage:
+1.8 V
+
+Input AC Excitation:
+1 V AC
+
+Final Lg:
+35 nH
+
+Source Resistance:
+50 ohm
+
+C1:
+1 pF
+
+Performance:
+Maximum gain      = 26.90 dB
+Peak frequency    = 2.291 GHz
+Gain @ 2.4 GHz    = 24.61 dB
+S11 @ 2.4 GHz     = -4.59 dB
+Zin @ ~2.4 GHz    = 197.24 - j5.05 ohm
+
+Simulation:
+ngspice-42
+AC analysis: 100 MHz – 10 GHz
+Sky130 transistor model: sky130_fd_pr__nfet_01v8
+
+Notes:
+This is a student-level RF LNA proof-of-concept.
+The design demonstrates RF amplification and frequency-selective
+behavior using the SKY130 device model. Input matching is not
+fully optimized.

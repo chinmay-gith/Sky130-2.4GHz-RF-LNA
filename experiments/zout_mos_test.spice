@@ -1,0 +1,30 @@
+** sch_path: /home/azmuth/Projects/Sky130_RF_Receiver/lna/lna_sky130.sch
+**.subckt lna_sky130 RF_OUT
+*.opin RF_OUT
+XM1 RF_OUT net2 net1 GND sky130_fd_pr__nfet_01v8 L=0.15 W=40 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+* Lload removed for intrinsic Zout test
+* Cload removed for intrinsic Zout test
+Ls net1 GND 0.5n m=1
+Lg net2 net4 2n m=1
+Rs net3 net5 50 m=1
+V1 net5 GND dc 0 ac 0
+Rbias VBIAS net2 10k m=1
+* Rload removed for intrinsic Zout test
+VB VBIAS GND 0.9
+VDD1 VDD GND 1.8
+C1 net3 net4 1p m=1
+**** begin user architecture code
+
+
+* --- Sky130 LNA testbench directives ---
+* Adjust this include path to match your local sky130 install:
+.lib /home/azmuth/.volare/volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/combined/sky130.lib.spice tt
+VTEST RF_OUT GND dc 0 ac 1
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.ac lin 1 2.3442g 2.3442g
+.end

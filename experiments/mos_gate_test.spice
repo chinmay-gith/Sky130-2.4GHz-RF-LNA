@@ -1,0 +1,14 @@
+* SKY130 NFET BASIC TEST
+
+.include /home/azmuth/.volare/volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/combined/sky130.lib.spice
+
+VDD vdd 0 1.8
+VGS gate 0 0.9
+
+RLOAD vdd drain 1k
+
+XM1 drain gate 0 0 sky130_fd_pr__nfet_01v8 L=0.15 W=40 nf=1
+
+.op
+
+.end

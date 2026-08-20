@@ -1,0 +1,93 @@
+** sch_path: /home/azmuth/Projects/Sky130_RF_Receiver/lna/lna_sky130_match_test.sch
+**.subckt lna_sky130_match_test RF_OUT
+*.opin RF_OUT
+XM1 RF_OUT net2 net1 GND sky130_fd_pr__nfet_01v8 L=0.15 W=40 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+Lload VDD RF_OUT 3n m=1
+Cload VDD RF_OUT 1.5p m=1
+Ls net1 GND 0.5n m=1
+Lg net2 net4 2n m=1
+Rs net3 net5 50 m=1
+V1 net5 GND dc 0 ac 1
+Rbias VBIAS net2 10k m=1
+Rload RF_OUT GND 50 m=1
+VB VBIAS GND 0.9
+VDD1 VDD GND 1.8
+C1 net3 net4 1p m=1
+**** begin user architecture code
+
+
+* --- Sky130 LNA testbench directives ---
+* Adjust this include path to match your local sky130 install:
+.lib /home/azmuth/.volare/volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/combined/sky130.lib.spice tt
+.control
+
+alter Rload 50
+alter VB 0.9
+alter Lg 2n
+alter C1 1p
+alter Lload 3n
+alter Cload 1.4p
+
+alter Ls 0.1n
+ac lin 1 2.4g 2.4g
+let z01 = 1/(-i(V1))
+let s01 = (z01-50)/(z01+50)
+let s01db = 20*log10(abs(s01))
+print z01
+print s01db
+
+alter Ls 0.2n
+ac lin 1 2.4g 2.4g
+let z02 = 1/(-i(V1))
+let s02 = (z02-50)/(z02+50)
+let s02db = 20*log10(abs(s02))
+print z02
+print s02db
+
+alter Ls 0.3n
+ac lin 1 2.4g 2.4g
+let z03 = 1/(-i(V1))
+let s03 = (z03-50)/(z03+50)
+let s03db = 20*log10(abs(s03))
+print z03
+print s03db
+
+alter Ls 0.4n
+ac lin 1 2.4g 2.4g
+let z04 = 1/(-i(V1))
+let s04 = (z04-50)/(z04+50)
+let s04db = 20*log10(abs(s04))
+print z04
+print s04db
+
+alter Ls 0.5n
+ac lin 1 2.4g 2.4g
+let z05 = 1/(-i(V1))
+let s05 = (z05-50)/(z05+50)
+let s05db = 20*log10(abs(s05))
+print z05
+print s05db
+
+alter Ls 0.7n
+ac lin 1 2.4g 2.4g
+let z07 = 1/(-i(V1))
+let s07 = (z07-50)/(z07+50)
+let s07db = 20*log10(abs(s07))
+print z07
+print s07db
+
+alter Ls 1n
+ac lin 1 2.4g 2.4g
+let z1 = 1/(-i(V1))
+let s1 = (z1-50)/(z1+50)
+let s1db = 20*log10(abs(s1))
+print z1
+print s1db
+
+.endc
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

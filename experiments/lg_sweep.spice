@@ -1,0 +1,90 @@
+** sch_path: /home/azmuth/Projects/Sky130_RF_Receiver/lna/lna_sky130_match_test.sch
+**.subckt lna_sky130_match_test RF_OUT
+*.opin RF_OUT
+XM1 RF_OUT net2 net1 GND sky130_fd_pr__nfet_01v8 L=0.15 W=40 nf=4 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+Lload VDD RF_OUT 3n m=1
+Cload VDD RF_OUT 1.5p m=1
+Ls net1 GND 0.5n m=1
+Lg net2 net4 2n m=1
+Rs net3 net5 50 m=1
+V1 net5 GND dc 0 ac 1
+Rbias VBIAS net2 10k m=1
+Rload RF_OUT GND 50 m=1
+VB VBIAS GND 0.9
+VDD1 VDD GND 1.8
+C1 net3 net4 1p m=1
+**** begin user architecture code
+
+
+* --- Sky130 LNA testbench directives ---
+* Adjust this include path to match your local sky130 install:
+.lib /home/azmuth/.volare/volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/combined/sky130.lib.spice tt
+.control
+
+alter Rload 50
+alter Cload 1.4p
+alter C1 1p
+
+alter Lg 2n
+ac lin 1 2.4g 2.4g
+let zin2 = 1/(-i(V1))
+let s112 = (zin2-50)/(zin2+50)
+let s112db = 20*log10(abs(s112))
+print zin2
+print s112db
+
+alter Lg 5n
+ac lin 1 2.4g 2.4g
+let zin5 = 1/(-i(V1))
+let s115 = (zin5-50)/(zin5+50)
+let s115db = 20*log10(abs(s115))
+print zin5
+print s115db
+
+alter Lg 10n
+ac lin 1 2.4g 2.4g
+let zin10 = 1/(-i(V1))
+let s1110 = (zin10-50)/(zin10+50)
+let s1110db = 20*log10(abs(s1110))
+print zin10
+print s1110db
+
+alter Lg 20n
+ac lin 1 2.4g 2.4g
+let zin20 = 1/(-i(V1))
+let s1120 = (zin20-50)/(zin20+50)
+let s1120db = 20*log10(abs(s1120))
+print zin20
+print s1120db
+
+alter Lg 40n
+ac lin 1 2.4g 2.4g
+let zin40 = 1/(-i(V1))
+let s1140 = (zin40-50)/(zin40+50)
+let s1140db = 20*log10(abs(s1140))
+print zin40
+print s1140db
+
+alter Lg 60n
+ac lin 1 2.4g 2.4g
+let zin60 = 1/(-i(V1))
+let s1160 = (zin60-50)/(zin60+50)
+let s1160db = 20*log10(abs(s1160))
+print zin60
+print s1160db
+
+alter Lg 80n
+ac lin 1 2.4g 2.4g
+let zin80 = 1/(-i(V1))
+let s1180 = (zin80-50)/(zin80+50)
+let s1180db = 20*log10(abs(s1180))
+print zin80
+print s1180db
+
+.endc
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end
